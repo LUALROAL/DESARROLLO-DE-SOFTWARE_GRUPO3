@@ -1,7 +1,7 @@
 # DESARROLLO-DE-SOFTWARE_GRUPO3
-## Consederaciones Tecnicas
 
-1. Java11
+## Consideraciones Técnicas
+
 2. Mysql
 3. Spring-boot  
    * JPA
@@ -40,5 +40,12 @@ Windows
 ~~~
   mvnw spring-boot:run
 ~~~
+
+### visualizar el proyecto
+
+1. abra un navegador y coloque la ruta http://localhost:8082/login
+2. inicie sesion con los siguientes datos
+   usuario: admininicial
+   contraseña: admin123456
 
 
