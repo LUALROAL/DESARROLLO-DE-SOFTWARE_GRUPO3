@@ -1,6 +1,8 @@
 package com.tiendagenerica.tienda.modelos;
 import javax.persistence.*;
 
+
+
 @Entity
 @Table(name="usuarios",uniqueConstraints=@UniqueConstraint(columnNames={"cedula","usuario"}))
 public class UsuarioModel {
