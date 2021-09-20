@@ -2,6 +2,7 @@
 
 ## Consideraciones Técnicas
 
+1. Java11
 2. Mysql
 3. Spring-boot  
    * JPA
