@@ -3,21 +3,40 @@
        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:insert="fragments :: headerfiles">
 </head>
-<body>
-<header th:insert="fragments :: nav"></header>
+<body class="bg-dark">
+	<div class="container ">
+		<img class="rounded mx-auto d-block"
+			src="https://tiendacerca.com/static/assets/market/shop-red.gif"
+			alt="Card image cap" width="30%" height="30%" />
+	</div>
+	<header th:insert="fragments :: nav"></header>
+	<div class="container ">
+		<div class="jumbotron">
+			<h1 class="display-4" sec:authorize="!isAuthenticated()">Bienvenido
+				a nuestra Tienda virtual</h1>
+			<h1 class="display-4" sec:authorize="isAuthenticated()">
+				Bienvenido <span sec:authentication="name"></span>
+				<p class="lead">Por favor Inicie su gestion</p>
+				<form sec:authorize="isAuthenticated()"
+					class="form-inline my-2 my-lg-0" th:action="@{/logout}"
+					method="post">
+					<button class="btn btn-outline-danger my-2 my-sm-0" type="submit">
+						<i class="fas fa-sign-out-alt"></i> Cerrar Sesion
+					</button>
+				</form>
+			</h1>
+			<h1 class="display-4" sec:authorize="!isAuthenticated()">
+				<p class="lead">Nos complase gratamente tu visita</p>
+			</h1>
+			<hr class="my-4">
+			<a th:href="@{/login}" sec:authorize="!isAuthenticated()"><button
+					class="btn btn-primary my-2 my-sm-0" type="submit">
+					<i class="fas fa-sign-in-alt"></i> Iniciar Sesion
+				</button></a>
+		</div>
+	</div>
 
-<div class="container">
-    <div class="jumbotron">
-        <h1 class="display-4" sec:authorize="!isAuthenticated()">Debes iniciar sesión</h1>
-        <h1 class="display-4" sec:authorize="isAuthenticated()">Tienda Usuario <span sec:authentication="name"></span></h1>
-        <p class="lead">Grupo 3.</p>
-        <hr class="my-4">
-        <!--<p>Roa</p>-->
-        <!--<a class="btn btn-primary btn-lg" href="#" role="button">Leer mas</a>-->
-    </div>
-</div>
-
-<footer th:insert="fragments :: footer"></footer>
-<div th:insert="fragments :: scripts"></div>
+	<footer th:insert="fragments :: footer"></footer>
+	<div th:insert="fragments :: scripts"></div>
 </body>
 </html>

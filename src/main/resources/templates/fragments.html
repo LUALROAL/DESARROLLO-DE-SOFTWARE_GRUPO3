@@ -44,10 +44,6 @@
                             <a class="dropdown-item" th:href="@{/producto/lista}">
                                 <i class="far fa-list-alt"></i> Productos</a>
 
-
-
-
-
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" th:href="@{/producto/nuevo}">
                                 <i class="fas fa-plus-circle"></i> Nuevo Producto</a>
@@ -55,9 +51,7 @@
                     </li>
                 </ul>
 
-                <a th:href="@{/login}" sec:authorize="!isAuthenticated()"><button
-                        class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión</button></a>
+
 
                 <form sec:authorize="isAuthenticated()" class="form-inline my-2 my-lg-0" th:action="@{/logout}"
                     method="post">
@@ -72,7 +66,7 @@
 
     <footer th:fragment="footer" class="footer mt-auto py-3 text-center dark bg-dark fixed-bottom">
         <div class="container">
-            <span class="text-muted">&copy; Roberto Contreras</span>
+            <span class="text-white" ><h6>GRUPO 3</h6></span>
         </div>
     </footer>
 
