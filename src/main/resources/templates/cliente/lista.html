@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="fragments :: headerfiles">
+</head>
+<body class="bg-dark">
+	<header>
+		<br> <br>
+	</header>
+	<img class="rounded mx-auto d-block"
+		src="https://www.callcentermexico.com.mx/hs-fs/hubfs/iconos_clientes_5-2.png?width=402&name=iconos_clientes_5-2.png"
+		alt="Card image cap" width="15%" height="15%" />
+	<br>
+	<h1 class="text-center text-white bg-dark">CLIENTES</h1>
+	<br>
+	<div class="container">
+		<div>
+			<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/cliente/nuevo}">
+				<button class="btn btn-outline-success">
+					<i class="fas fa-plus-circle"></i> Nuevo Cliente
+				</button>
+			</a> <a th:href="@{/}">
+				<button type="button" th:href="@{/}" class="btn btn-outline-danger">
+					<i class="fas fa-reply-all"></i> Volver al menu
+				</button>
+			</a>
+		</div>
+		<br>
+		<table class="table table-striped table-white text-center text-white">
+			<thead>
+				<tr>
+					<th scope="col">Nombre</th>
+					<th scope="col">Cedula</th>
+					<th scope="col">Direccion</th>
+					<th scope="col">Telefono</th>
+					<th scope="col">Correo</th>
+					<th scope="col">Ver</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cliente: ${clientes}">
+					<td th:text="${cliente.nombre}"></td>
+					<td th:text="${cliente.cedula}"></td>
+					<td th:text="${cliente.direccion}"></td>
+					<td th:text="${cliente.telefono}"></td>
+					<td th:text="${cliente.correo}"></td>
+					<td><a th:href="@{'/cliente/detalle/' + ${cliente.id}}"><button
+								class="btn btn-outline-primary">
+								<i class="far fa-eye"></i>
+							</button></a></td>
+					<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+						th:href="@{'/cliente/editar/' + ${cliente.id}}"><button
+								class="btn btn-outline-warning">
+								<i class="far fa-edit"></i>
+							</button></a></td>
+					<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+						th:href="@{'/cliente/borrar/' + ${cliente.id}}"><button
+								class="btn btn-outline-danger">
+								<i class="far fa-trash-alt"></i>
+							</button></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br><br>
+	<footer th:insert="fragments :: footer"></footer>
+	<div th:insert="fragments :: scripts"></div>
+</body>
+</html>

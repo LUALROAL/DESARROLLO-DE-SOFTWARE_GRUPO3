@@ -29,7 +29,7 @@ public class Proveedor {
     public Proveedor(int id, String nombre, String nit, String telefono, String direccion, String ciudad) {
         this.id = id;
         this.nombre = nombre;
-        nit = nit;
+        this.nit = nit;
         this.telefono = telefono;
         this.direccion = direccion;
         this.ciudad = ciudad;
