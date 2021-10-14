@@ -1,11 +1,14 @@
 package com.tiendagenerica.tienda.controller;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import com.tiendagenerica.tienda.entity.Rol;
 import com.tiendagenerica.tienda.entity.Usuario;
 import com.tiendagenerica.tienda.enums.RolNombre;
 import com.tiendagenerica.tienda.service.RolService;
 import com.tiendagenerica.tienda.service.UsuarioService;
-
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/usuario")

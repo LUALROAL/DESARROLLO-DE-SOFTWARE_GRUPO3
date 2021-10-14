@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org"
-       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
+
 <head th:insert="fragments :: headerfiles">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forbidden</title>
 </head>
+
 <body>
-<header th:insert="fragments :: nav"></header>
+    <header th:insert="fragments :: nav"></header>
 
-<div class="container">
-    <div class="jumbotron">
-        <h1 class="display-4">No autorizado 403</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">No autorizado 403</h1>
+            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention
+                to featured content or information.</p>
+            <hr class="my-4">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        </div>
     </div>
-</div>
 
-<footer th:insert="fragments :: footer"></footer>
-<div th:insert="fragments :: scripts"></div>
+    <footer th:insert="fragments :: footer"></footer>
+    <div th:insert="fragments :: scripts"></div>
 </body>
+
 </html>
