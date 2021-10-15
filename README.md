@@ -126,3 +126,8 @@ Ejecute los siguientes script en una consola de la base de datos:
    contraseña: admin123456
 
 
+### crear .war
+
+~~~
+  ./mvnw package -Dmaven.test.skip
+~~~
