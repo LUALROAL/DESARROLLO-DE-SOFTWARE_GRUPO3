@@ -2,8 +2,9 @@ package com.tiendagenerica.tienda.entity;
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.*;
+import org.springframework.context.index.CandidateComponentsIndexLoader;
 
+import javax.persistence.*;
 
 @Entity
 public class Producto {
@@ -13,18 +14,72 @@ public class Producto {
     @NotNull
     @Column(unique = true)
     private String nombre;
-    
-    private float precio;
 
+    private String codigo;
+    private String nitProveedor;
+    private float precioCompra;
+    private float precioVenta;
+    private float ivaCompra;
     private int cantidad;
+
+    
 
     public Producto() {
     }
 
-    public Producto(String nombre, float precio, int cantidad) {
+
+    public Producto(int id, String nombre, String codigo, String nitProveedor, float precioCompra, float precioVenta,
+            float ivaCompra, int cantidad) {
+        this.id = id;
         this.nombre = nombre;
-        this.precio = precio;
+        this.codigo = codigo;
+        this.nitProveedor = nitProveedor;
+        this.precioCompra = precioCompra;
+        this.precioVenta = precioVenta;
+        this.ivaCompra = ivaCompra;
         this.cantidad = cantidad;
+    }
+
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNitProveedor() {
+        return nitProveedor;
+    }
+
+    public void setNitProveedor(String nitProveedor) {
+        this.nitProveedor = nitProveedor;
+    }
+
+    public float getPrecioCompra() {
+        return precioCompra;
+    }
+
+    public void setPrecioCompra(float precioCompra) {
+        this.precioCompra = precioCompra;
+    }
+
+    public float getPrecioVenta() {
+        return precioVenta;
+    }
+
+    public void setPrecioVenta(float precioVenta) {
+        this.precioVenta = precioVenta;
+    }
+
+
+    public float getIvaCompra() {
+        return ivaCompra;
+    }
+
+    public void setIvaCompra(float ivaCompra) {
+        this.ivaCompra = ivaCompra;
     }
 
     public int getId() {
@@ -41,14 +96,6 @@ public class Producto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public float getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(float precio) {
-        this.precio = precio;
     }
 
     public int getCantidad() {

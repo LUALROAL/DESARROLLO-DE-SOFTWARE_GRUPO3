@@ -11,9 +11,9 @@
 
 <body class="bg-dark">
     <div class="container ">
+        <header th:insert="fragments :: nav"></header>
         <img class="rounded mx-auto d-block" src="https://tiendacerca.com/static/assets/market/shop-red.gif" alt="Card image cap" width="30%" height="30%" />
     </div>
-    <header th:insert="fragments :: nav"></header>
     <div class="container ">
         <div class="jumbotron">
             <h1 class="display-4" sec:authorize="!isAuthenticated()">Bienvenido

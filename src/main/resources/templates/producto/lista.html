@@ -2,61 +2,70 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:insert="fragments :: headerfiles">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 
 <body class="bg-dark">
-    <header>
-        <br> <br>
-    </header>
+    <header th:insert="fragments :: nav"></header>
     <img class="rounded mx-auto d-block" src="https://www.damos.co/mediateca/onlineshopping_damos.gif" alt="Card image cap" width="15%" height="15%" />
     <br>
     <h1 class="text-center text-white bg-dark">PRODUCTOS</h1>
     <br>
+
+
     <div class="container">
-        <div>
+
+        <div class="row">
             <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/producto/nuevo}">
-                <button class="btn btn-outline-success">
-                    <i class="fas fa-plus-circle"></i> Nuevo Producto
-                </button>
-            </a> <a th:href="@{/}">
-                <button type="button" th:href="@{/}" class="btn btn-outline-danger">
-                    <i class="fas fa-reply-all"></i> Volver al menu
-                </button>
-            </a>
+                <button class="btn btn-outline-success btn-lg">
+                    <i class="fas fa-plus-circle"></i>Nuevo Producto</button></a>
+
+            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/producto/cargarlistaproductos}">
+                <button class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-cloud-upload"></i>Cargar archivo CSV</button></a>
         </div>
-        <br>
-        <table class="table table-striped table-white text-center text-white">
-            <thead>
-                <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">cantidad</th>
-                    <th scope="col">Ver</th>
-                    <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
-                    <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="producto: ${productos}">
-                    <td th:text="${producto.nombre}"></td>
-                    <td th:text="${producto.precio}"></td>
-                    <td th:text="${producto.cantidad}"></td>
-                    <td><a th:href="@{'/producto/detalle/' + ${producto.id}}"><button class="btn btn-outline-primary">
-                                <i class="far fa-eye"></i>
-                            </button></a></td>
-                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/producto/editar/' + ${producto.id}}"><button class="btn btn-outline-warning">
-                                <i class="far fa-edit"></i>
-                            </button></a></td>
-                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/producto/borrar/' + ${producto.id}}"><button class="btn btn-outline-danger">
-                                <i class="far fa-trash-alt"></i>
-                            </button></a></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="row">
+            <table class="table table-dark text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nit proveedor</th>
+                        <th scope="col">Precio compra </th>
+                        <th scope="col">Precio de venta</th>
+                        <th scope="col">Iva de compra</th>
+                        <th scope="col">Cantidad</th>
+                        <!-- <th scope="col">Detalle</th> -->
+                        <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Detalles</th>
+                        <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+                        <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="producto: ${productos}">
+                        <td th:text="${producto.nombre}"></td>
+                        <td th:text="${producto.codigo}"></td>
+                        <td th:text="${producto.nitProveedor}"></td>
+                        <td th:text="${producto.precioCompra}"></td>
+                        <td th:text="${producto.precioVenta}"></td>
+                        <td th:text="${producto.ivaCompra}"></td>
+                        <td th:text="${producto.Cantidad}"></td>
+                        <td><a th:href="@{'/producto/detalle/' + ${producto.id}}"><button class="btn btn-outline-primary"><i class="far fa-eye"></i></button></a></td>
+                        <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/producto/editar/' + ${producto.id}}"><button class="btn btn-outline-warning"><i class="far fa-edit"></i></button></a></td>
+                        <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/producto/borrar/' + ${producto.id}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+
+
     </div>
-    <br><br>
+
     <footer th:insert="fragments :: footer"></footer>
     <div th:insert="fragments :: scripts"></div>
+
 </body>
 
 </html>
