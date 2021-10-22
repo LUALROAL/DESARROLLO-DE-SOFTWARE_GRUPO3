@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:insert="fragments :: headerfiles">
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<body class="bg-dark">
+    <header th:insert="fragments :: nav"></header>
+    <div class="container text-white">
+
+
+        <div class="row">
+            <div class="col-12">
+                <h2>Vender</h2>
+                <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+                </div>
+
+                <form th:action="@{/venta/agregar}" method="post">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+
+                                <select name="prodId" id="prod" class="form-control">
+                                    <option value="">Seleccione un producto</option>
+                                    <th:block th:each="itemProd:${productos}">
+                                        <option th:value="${itemProd.id}" th:text="${itemProd.id+' - '+itemProd.nombre}">
+                                        </option>
+                                    </th:block>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary">&nbsp;<i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+
+                </form>
+                <hr>
+                <form class="mb-2" th:action="@{/venta/terminar}" method="post">
+
+                    <div class="row">
+                        <button type="submit" class="btn btn-success">Finalizar Venta&nbsp;<i class="fa fa-check"></i>
+                        </button>
+                        <a th:href="@{/venta/limpiar}" class="btn btn-danger">Cancelar venta&nbsp;<i class="fa fa-trash"></i>
+                        </a>
+                    </div>
+
+                </form>
+                <hr>
+                <h1 th:text="${'Total: ' + total}"></h1>
+                <div class="table-responsive">
+                    <table class="table text-white table-white text-center">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Código</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Total</th>
+                                <th>Quitar de lista</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="producto, iterador : ${session.carrito}">
+                                <td th:text="${producto.nombre}"></td>
+                                <td th:text="${producto.codigo}"></td>
+                                <td th:text="${producto.precioVenta}"></td>
+                                <td th:text="${producto.cantidadVenta}"></td>
+                                <td th:text="${producto.total}"></td>
+                                <td>
+                                    <form th:action="@{/venta/quitar/} + ${iterador.index}" method="post">
+                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <a th:href="@{/venta/lista}" style="text-decoration: none;"><button class="btn btn-outline-info btn-block">
+                        <i class="fas fa-arrow-circle-left"></i>Volver</button></a>
+            </div>
+        </div>
+    </div>
+
+
+    <div th:insert="fragments :: scripts"></div>
+</body>
+
+</html>

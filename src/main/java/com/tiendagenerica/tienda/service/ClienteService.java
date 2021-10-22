@@ -46,5 +46,9 @@ public class ClienteService {
     public boolean existsByNombre(String nombre){
         return clienteRepository.existsByNombre(nombre);
     } 
+
+    public boolean existsByCedula(String cedula){
+        return clienteRepository.existsByCedula(cedula);
+    } 
     
 }

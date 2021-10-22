@@ -1,31 +1,38 @@
 package com.tiendagenerica.tienda.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.sun.istack.NotNull;
+import javax.persistence.*;
 
 @Entity
 public class Cliente {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@NotNull
+	@Column(unique = true)
 
 	private String cedula;
 	private String nombre;
 	private String direccion;
 	private String telefono;
-	private String correo;
-	
+	private String email;
+
 	public Cliente() {
+
 	}
-	
-	public Cliente(String cedula, String nombre, String direccion, String telefono, String correo) {
+
+	public Cliente(int id) {
+		this.id = id;
+	}
+
+	public Cliente(String cedula, String nombre, String direccion, String telefono, String email) {
 		this.cedula = cedula;
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.telefono = telefono;
-		this.correo = correo;
+		this.email = email;
+
 	}
 
 	public int getId() {
@@ -68,12 +75,12 @@ public class Cliente {
 		this.telefono = telefono;
 	}
 
-	public String getCorreo() {
-		return correo;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setCorreo(String correo) {
-		this.correo = correo;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
