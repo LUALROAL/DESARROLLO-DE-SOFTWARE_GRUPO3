@@ -123,10 +123,14 @@ public class UsuarioController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/borrar/{id}")
     public ModelAndView borrar(@PathVariable("id") int id) {
-        if (usuarioService.existsById(id)) {
-            usuarioService.delete(id);
-            return new ModelAndView("redirect:/usuario/lista");
+        try {
+            if (usuarioService.existsById(id)) {
+                usuarioService.delete(id);
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
         }
-        return null;
+        return new ModelAndView("redirect:/usuario/lista");
     }
 }

@@ -110,11 +110,14 @@ public class ClienteController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/borrar/{id}")
     public ModelAndView borrar(@PathVariable("id") int id) {
-        if (clienteService.existsById(id)) {
-            clienteService.delete(id);
-            return new ModelAndView("redirect:/cliente/lista");
+        try {
+            if (clienteService.existsById(id)) {
+                clienteService.delete(id);
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
         }
-        return null;
+        return new ModelAndView("redirect:/cliente/lista");
     }
 
 }

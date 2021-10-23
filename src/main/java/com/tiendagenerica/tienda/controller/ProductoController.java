@@ -72,13 +72,13 @@ public class ProductoController {
                 // convert `CsvToBean` object to list of ProductoDto
                 List<ProductoDto> productosDtos = csvToBean.parse();
 
-                // guardar usuarios en base de datos
+                // guardar productos en base de datos
 
                 for (ProductoDto itemProducto : productosDtos) {
                     Producto productoEntidad = new Producto(0, itemProducto.getNombre(), itemProducto.getCodigo(),
                             itemProducto.getNitProveedor(), ValidadorUtil.priceConvert(itemProducto.getPrecioCompra()),
                             ValidadorUtil.priceConvert(itemProducto.getPrecioVenta()),
-                            ValidadorUtil.priceConvert(itemProducto.getIvaCompra()), itemProducto.getCantidad());
+                            ValidadorUtil.priceConvert(itemProducto.getIvaCompra()), Integer.parseInt(itemProducto.getCantidad()));
                     productoService.save(productoEntidad);
                 }
 
@@ -203,11 +203,15 @@ public class ProductoController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/borrar/{id}")
     public ModelAndView borrar(@PathVariable("id") int id) {
-        if (productoService.existsById(id)) {
-            productoService.delete(id);
-            return new ModelAndView("redirect:/producto/lista");
+        try {
+            if (productoService.existsById(id)) {
+                productoService.delete(id);
+            }
+            
+        } catch (Exception e) {
+            //TODO: handle exception
         }
-        return null;
+        return new ModelAndView("redirect:/producto/lista");
     }
 
     

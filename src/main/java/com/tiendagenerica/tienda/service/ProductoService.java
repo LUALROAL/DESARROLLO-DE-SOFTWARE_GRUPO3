@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,5 +43,8 @@ public class ProductoService {
 
     public boolean existsByNombre(String nombre){
         return productoRepository.existsByNombre(nombre);
+    }
+    public Collection<Producto> getProductosVenta(Integer idVenta) {
+        return productoRepository.getProductosVenta(idVenta);
     }
 }

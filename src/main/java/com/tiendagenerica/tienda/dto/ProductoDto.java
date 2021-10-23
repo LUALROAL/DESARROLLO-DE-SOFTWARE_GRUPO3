@@ -4,6 +4,7 @@ import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvBindByPosition;
 
 public class ProductoDto {
+
     @CsvBindByPosition(position = 0)
     private String codigo;
 
@@ -23,17 +24,16 @@ public class ProductoDto {
     private String precioVenta;
 
     @CsvBindByPosition(position = 6)
-    private int cantidad;
+    private String cantidad;
 
     public ProductoDto(String nombre, String codigo, String nitProveedor, String precioCompra, String precioVenta,
-            String ivaCompra, int cantidad) {
+            String ivaCompra) {
         this.nombre = nombre;
         this.codigo = codigo;
         this.nitProveedor = nitProveedor;
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
         this.ivaCompra = ivaCompra;
-        this.cantidad = cantidad;
     }
 
     public ProductoDto() {
@@ -87,12 +87,12 @@ public class ProductoDto {
         this.ivaCompra = ivaCompra;
     }
 
-    public int getCantidad() {
+    public String getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(String cantidad) {
         this.cantidad = cantidad;
     }
-    
+
 }

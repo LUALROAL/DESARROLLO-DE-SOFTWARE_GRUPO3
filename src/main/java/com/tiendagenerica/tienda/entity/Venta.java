@@ -19,15 +19,22 @@ public class Venta {
 
 	private float total;
 	private String fecha;
+	private float subTotal;
+	private float iva;
+	private float totalIva;
 
 	public Venta() {
 	}
 
-	public Venta(int id, Usuario usuario, Cliente cliente, float total, String fecha) {
-		this.id = id;
+	public Venta(Usuario usuario, Cliente cliente, float total, float subTotal, float iva, float totalIva,
+			String fecha) {
+		this.id = 0;
 		this.usuario = usuario;
 		this.cliente = cliente;
 		this.total = total;
+		this.subTotal = subTotal;
+		this.iva = iva;
+		this.totalIva = totalIva;
 		this.fecha = fecha;
 	}
 
@@ -73,6 +80,30 @@ public class Venta {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public float getSubTotal() {
+		return subTotal;
+	}
+
+	public void setSubTotal(float subTotal) {
+		this.subTotal = subTotal;
+	}
+
+	public float getIva() {
+		return iva;
+	}
+
+	public void setIva(float iva) {
+		this.iva = iva;
+	}
+
+	public float getTotalIva() {
+		return totalIva;
+	}
+
+	public void setTotalIva(float totalIva) {
+		this.totalIva = totalIva;
 	}
 
 

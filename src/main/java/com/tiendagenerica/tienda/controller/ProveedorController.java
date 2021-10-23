@@ -35,7 +35,8 @@ public class ProveedorController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/guardar")
-    public ModelAndView crear(@RequestParam String nombre,@RequestParam String nit,@RequestParam String tel,@RequestParam String dir,@RequestParam String ciudad) {
+    public ModelAndView crear(@RequestParam String nombre, @RequestParam String nit, @RequestParam String tel,
+            @RequestParam String dir, @RequestParam String ciudad) {
         ModelAndView mv = new ModelAndView();
         if (StringUtils.isBlank(nombre)) {
             mv.setViewName("proveedor/nuevo");
@@ -77,7 +78,8 @@ public class ProveedorController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/actualizar")
-    public ModelAndView actualizar(@RequestParam int id, @RequestParam String nombre,@RequestParam String nit,@RequestParam String tel,@RequestParam String dir,@RequestParam String ciudad) {
+    public ModelAndView actualizar(@RequestParam int id, @RequestParam String nombre, @RequestParam String nit,
+            @RequestParam String tel, @RequestParam String dir, @RequestParam String ciudad) {
         if (!proveedorService.existsById(id))
             return new ModelAndView("redirect:/proveedor/lista");
         ModelAndView mv = new ModelAndView();
@@ -108,11 +110,15 @@ public class ProveedorController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/borrar/{id}")
     public ModelAndView borrar(@PathVariable("id") int id) {
-        if (proveedorService.existsById(id)) {
-            proveedorService.delete(id);
-            return new ModelAndView("redirect:/proveedor/lista");
+        try {
+            if (proveedorService.existsById(id)) {
+                proveedorService.delete(id);
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
         }
-        return null;
+        return new ModelAndView("redirect:/proveedor/lista");
     }
 
 }
