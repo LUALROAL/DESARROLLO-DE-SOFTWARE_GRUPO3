@@ -11,21 +11,27 @@
 
     <div class="container">
         <div class="card">
-            <div class="card-header text-center">
-                Detalles del Cliente
-            </div>
-            <div class="card-body">
-                <h5 class="card-title" th:text="'Cedula: ' + ${cliente.cedula}"></h5>
-                <p class="card-text" th:text="'Nombre: ' + ${cliente.nombre} + ''"></p>
-                <p class="card-text" th:text="'Direccion: ' + ${cliente.direccion} + ''"></p>
-                <p class="card-text" th:text="'Telefono: ' + ${cliente.telefono} + ''"></p>
-                <p class="card-text" th:text="'Email: ' + ${cliente.email} + ''"></p>
-                <p class="text-justify"><b>Descripción: </b>Cliente Fidelizado con Vegetarian Shop.</p>
-                <a th:href="@{/cliente/lista}" class="btn btn-outline-info">
-                    <i class="fas fa-arrow-circle-left"></i> Volver
-                </a>
-            </div>
-        </div>
+			<div class="card-header text-center">Detalles del Cliente</div>
+			<div class="card-body">
+				<h5 class="card-title"
+					th:text="'Nombre del Cliente: ' + ${cliente.nombre}"></h5>
+				<b>Cedula:</b>
+				<p class="card-text" th:text="${cliente.cedula} + ''"></p>
+				<b>Direccion:</b>
+				<p class="card-text" th:text=" ${cliente.direccion} + ''"></p>
+				<b>Telefono:</b>
+				<p class="card-text" th:text="${cliente.telefono} + ''"></p>
+				<b>Emal:</b>
+				<p class="card-text" th:text="${cliente.email} + ''"></p>
+				<p class="text-justify">
+					<b>Descripcion: </b>Este cliente pertenece a nuestra tienda
+					virtual.
+				</p>
+				<a th:href="@{/cliente/lista}" class="btn btn-outline-danger"> <i
+					class="fas fa-arrow-circle-left"></i> Volver
+				</a>
+			</div>
+		</div>
     </div>
 
     <div style="margin-bottom: 60px;"></div>

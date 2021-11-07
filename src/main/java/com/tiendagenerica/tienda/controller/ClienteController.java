@@ -2,12 +2,16 @@ package com.tiendagenerica.tienda.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.tiendagenerica.tienda.entity.Cliente;
 import com.tiendagenerica.tienda.service.ClienteService;
 
@@ -60,6 +64,23 @@ public class ClienteController {
         if (!clienteService.existsById(id))
             return new ModelAndView("redirect:/cliente/lista");
         Cliente cliente = clienteService.getOne(id).get();
+        ModelAndView mv = new ModelAndView("/cliente/detalle");
+        mv.addObject("cliente", cliente);
+        return mv;
+    }
+    
+    
+    @PostMapping(value = "/buscar")
+    public ModelAndView buscar(@RequestParam String busquedaId, HttpServletRequest request,
+            RedirectAttributes redirectAttrs) {
+    	int busId = 0;
+    	try {
+    	busId = Integer.parseInt(busquedaId);	
+		} catch (Exception e) {
+		}
+        if (!clienteService.existsById(busId))
+            return new ModelAndView("redirect:/cliente/lista");
+        Cliente cliente = clienteService.getOne(busId).get();
         ModelAndView mv = new ModelAndView("/cliente/detalle");
         mv.addObject("cliente", cliente);
         return mv;

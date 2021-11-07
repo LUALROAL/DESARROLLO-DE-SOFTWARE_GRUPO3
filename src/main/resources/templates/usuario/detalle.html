@@ -16,9 +16,13 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title" th:text="'Nombre completo: ' + ${usuario.nombreCompleto}"></h5>
-                <p class="card-text" th:text="'Cedula: ' + ${usuario.cedula} + ''"></p>
-                <p class="card-text" th:text="'Correo: ' + ${usuario.correo} + ''"></p>
-                <p class="text-justify"><b>DescripciÃ³n: </b>Este usuario pertenece a nuestra tienda Virtual.</p>
+                <b>Cedula:</b>
+				<p class="card-text" th:text="${usuario.cedula} + ''"></p>
+				<b>Correo:</b>
+				<p class="card-text" th:text=" ${usuario.correo} + ''"></p>
+				<b>Nombre de Usuario:</b>
+				<p class="card-text" th:text="${usuario.nombreUsuario} + ''"></p>
+                <p class="text-justify"><b>Descripcion: </b>Este usuario pertenece a nuestra tienda Virtual.</p>
                 <a th:href="@{/usuario/lista}" class="btn btn-outline-danger">
                     <i class="fas fa-arrow-circle-left"></i> Volver
                 </a>

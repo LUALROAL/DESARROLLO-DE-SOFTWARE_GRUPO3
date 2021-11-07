@@ -6,28 +6,38 @@
 
 <body class="bg-dark">
     <header th:insert="fragments :: nav"></header>
-    <h1 class="text-center text-white bg-dark">proveedor</h1>
+    <h1 class="text-center text-white bg-dark">PROVEEDOR</h1>
     <br><br>
 
-    <div class="container">
-        <div class="card">
-            <div class="card-header text-center bg-dark text-white">
-                Detalles del proveedor
-            </div>
-            <div class="card-body">
-                <h5 class="card-title" th:text="'Nombre del proveedor: ' + ${proveedor.nombre}"></h5>
-                <!-- <p class="card-text" th:text="'Precio del proveedor: $' + ${proveedor.precio} + ''"></p> -->
-                <p class="text-justify"><b>DescripciÃ³n: </b>Este proveedor pertenece a nuestra tienda virtual.</p>
-                <a th:href="@{/proveedor/lista}" class="btn btn-outline-danger">
-                    <i class="fas fa-arrow-circle-left"></i> Volver
-                </a>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="card">
+			<div class="card-header text-center bg-dark text-white">
+				Detalles del proveedor</div>
+			<div class="card-body">
+				<h5 class="card-title"
+					th:text="'Nombre del proveedor: ' + ${proveedor.nombre}"></h5>
+				<b>Nit:</b>
+				<p class="card-text" th:text="${proveedor.nit} + ''"></p>
+				<b>Direccion:</b>
+				<p class="card-text" th:text=" ${proveedor.direccion} + ''"></p>
+				<b>Telefono:</b>
+				<p class="card-text" th:text="${proveedor.telefono} + ''"></p>
+				<b>Ciudad:</b>
+				<p class="card-text" th:text="${proveedor.ciudad} + ''"></p>
+				<p class="text-justify">
+					<b>Descripcion: </b>Este proveedor pertenece a nuestra tienda
+					virtual.
+				</p>
+				<a th:href="@{/proveedor/lista}" class="btn btn-outline-danger">
+					<i class="fas fa-arrow-circle-left"></i> Volver
+				</a>
+			</div>
+		</div>
+	</div>
 
-    <div style="margin-bottom: 60px;"></div>
-    <footer th:insert="fragments :: footer"></footer>
-    <div th:insert="fragments :: scripts"></div>
+	<div style="margin-bottom: 60px;"></div>
+	<footer th:insert="fragments :: footer"></footer>
+	<div th:insert="fragments :: scripts"></div>
 </body>
 
 </html>

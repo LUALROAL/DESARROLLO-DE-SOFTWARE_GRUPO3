@@ -1,6 +1,6 @@
 package com.tiendagenerica.tienda.controller;
 
-import com.tiendagenerica.tienda.entity.Proveedor;
+import com.tiendagenerica.tienda.entity.Proveedor; 
 import com.tiendagenerica.tienda.service.ProveedorService;
 
 import org.apache.commons.lang3.StringUtils;
@@ -9,8 +9,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/proveedor")
@@ -64,8 +67,26 @@ public class ProveedorController {
         mv.addObject("proveedor", proveedor);
         return mv;
     }
-
-    @PreAuthorize("hasRole('ADMIN')")
+        
+    @PostMapping(value = "/buscar")
+    public ModelAndView buscar(@RequestParam String busquedaId, HttpServletRequest request,
+            RedirectAttributes redirectAttrs) {
+    	int busId = 0;
+    	try {
+    	busId = Integer.parseInt(busquedaId);	
+		} catch (Exception e) {
+		}
+        if (!proveedorService.existsById(busId))
+            return new ModelAndView("redirect:/proveedor/lista");
+        Proveedor proveedor = proveedorService.getOne(busId).get();
+        ModelAndView mv = new ModelAndView("/proveedor/detalle");
+        mv.addObject("proveedor", proveedor);
+        return mv;
+    }
+    
+    
+    
+       @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/editar/{id}")
     public ModelAndView editar(@PathVariable("id") int id) {
         if (!proveedorService.existsById(id))
@@ -122,3 +143,4 @@ public class ProveedorController {
     }
 
 }
+

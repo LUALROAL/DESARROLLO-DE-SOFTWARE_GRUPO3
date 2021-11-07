@@ -1,9 +1,12 @@
 package com.tiendagenerica.tienda.controller;
 
-import java.util.HashSet;
+import java.util.HashSet; 
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
+import com.tiendagenerica.tienda.entity.Proveedor;
 import com.tiendagenerica.tienda.entity.Rol;
 import com.tiendagenerica.tienda.entity.Usuario;
 import com.tiendagenerica.tienda.enums.RolNombre;
@@ -20,7 +23,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/usuario")
@@ -104,6 +109,23 @@ public class UsuarioController {
         if (!usuarioService.existsById(id))
             return new ModelAndView("redirect:/usuario/lista");
         Usuario usuario = usuarioService.getById(id).get();
+        ModelAndView mv = new ModelAndView("/usuario/detalle");
+        mv.addObject("usuario", usuario);
+        return mv;
+    }
+    
+   
+    @PostMapping(value = "/buscar")
+    public ModelAndView buscar(@RequestParam String busquedaId, HttpServletRequest request,
+            RedirectAttributes redirectAttrs) {
+    	int busId = 0;
+    	try {
+    	busId = Integer.parseInt(busquedaId);	
+		} catch (Exception e) {
+		}
+        if (!usuarioService.existsById(busId))
+            return new ModelAndView("redirect:/usuario/lista");
+        Usuario usuario = usuarioService.getById(busId).get();
         ModelAndView mv = new ModelAndView("/usuario/detalle");
         mv.addObject("usuario", usuario);
         return mv;

@@ -12,12 +12,35 @@
     <h1 class="text-center text-white bg-dark">CLIENTES</h1>
     <br>
     <div class="container text-white">
-        <div class="row">
-
-            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/cliente/nuevo}">
-                <button class="btn btn-outline-success btn-lg">
-                    <i class="fas fa-plus-circle"></i>Nuevo Cliente</button></a>
-        </div>
+    	<div class="row justify-content-between">
+			<div class="col-4">
+				<div>
+					<a sec:authorize="hasRole('ROLE_ADMIN')"
+						th:href="@{/cliente/nuevo}">
+						<button class="btn btn-outline-success">
+							<i class="fas fa-plus-circle"></i> Nuevo Cliente
+						</button>
+					</a> <a th:href="@{/}">
+						<button type="button" th:href="@{/}"
+							class="btn btn-outline-danger">
+							<i class="fas fa-reply-all"></i> Volver al menu
+						</button>
+					</a>
+				</div>
+			</div>
+			<div class="col-4">
+				<div>
+					<form class="form-inline" th:action="@{/cliente/buscar}"
+						th:object="${cliente}" method="post">
+						<div class="form-group mx-sm-3 mb-2">
+							<input type="number" class="form-control" id="busquedaId"
+								name="busquedaId" placeholder="Ingresa el ID">
+						</div>
+						<button type="submit" class="btn btn-primary mb-2">Buscar</button>
+					</form>
+				</div>
+			</div>
+		</div>
         <div class="row">
             <table class="table text-white table-white text-center">
                 <thead>

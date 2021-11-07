@@ -86,6 +86,32 @@ public class VentaController {
         mv.addObject("venta", venta);
         return mv;
     }
+    
+    @PostMapping(value = "/buscar")
+    public ModelAndView buscar(@RequestParam String busquedaId, HttpServletRequest request,
+            RedirectAttributes redirectAttrs) {
+    	int busId = 0;
+    	try {
+    	busId = Integer.parseInt(busquedaId);	
+		} catch (Exception e) {
+		}
+        Optional<Venta> ventaOpt = ventaService.getById(busId);
+
+        if (!ventaOpt.isPresent())
+            return new ModelAndView("redirect:/venta/lista");
+
+        VentaDto venta = new VentaDto();
+        venta.setCliente(ventaOpt.get().getCliente());
+
+        Collection<Producto> productos = productoService.getProductosVenta(ventaOpt.get().getId());
+        for (Producto item : productos) {
+            venta.agregarItem(item);
+        }
+
+        ModelAndView mv = new ModelAndView("/venta/detalle");
+        mv.addObject("venta", venta);
+        return mv;
+    }
 
     private VentaDto obtenerCarrito(HttpServletRequest request) {
         VentaDto carrito = (VentaDto) request.getSession().getAttribute("carrito");

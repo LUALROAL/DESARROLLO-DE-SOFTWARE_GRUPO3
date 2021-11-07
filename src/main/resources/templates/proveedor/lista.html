@@ -6,59 +6,87 @@
 </head>
 
 <body class="bg-dark">
-    <header th:insert="fragments :: nav"></header>
-    <img class="rounded mx-auto d-block" src="https://i.pinimg.com/originals/27/d6/e0/27d6e0f022298f6766d5cf2871327d1e.gif" alt="Card image cap" width="15%" height="15%" />
-    <br>
-    <h1 class="text-center text-white bg-dark">Proveedores</h1>
-    <br>
-    <div class="container text-white">
-        <div>
-            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/proveedor/nuevo}">
-                <button class="btn btn-outline-success">
-                    <i class="fas fa-plus-circle"></i> Nuevo proveedor
-                </button>
-            </a> <a th:href="@{/}">
-                <button type="button" th:href="@{/}" class="btn btn-outline-danger">
-                    <i class="fas fa-reply-all"></i> Volver al menu
-                </button>
-            </a>
-        </div>
-        <br>
+	<header th:insert="fragments :: nav"></header>
+	<img class="rounded mx-auto d-block"
+		src="https://i.pinimg.com/originals/27/d6/e0/27d6e0f022298f6766d5cf2871327d1e.gif"
+		alt="Card image cap" width="15%" height="15%" />
+	<br>
+	<h1 class="text-center text-white bg-dark">PROVEEDORES</h1>
+	<br>
+	<div class="container text-white">
+		<div class="row justify-content-between">
+			<div class="col-4">
+				<div>
+					<a sec:authorize="hasRole('ROLE_ADMIN')"
+						th:href="@{/proveedor/nuevo}">
+						<button class="btn btn-outline-success">
+							<i class="fas fa-plus-circle"></i> Nuevo proveedor
+						</button>
+					</a> <a th:href="@{/}">
+						<button type="button" th:href="@{/}"
+							class="btn btn-outline-danger">
+							<i class="fas fa-reply-all"></i> Volver al menu
+						</button>
+					</a>
+				</div>
+			</div>
+			<div class="col-4">
+				<div>
+					<form class="form-inline" th:action="@{/proveedor/buscar}"
+						th:object="${proveedor}" method="post">
+						<div class="form-group mx-sm-3 mb-2">
 
-        <div class="row" style="margin-bottom: 100px;">
-            <table class="table text-white table-white text-center">
-                <thead>
-                    <tr>
-                        <th scope="col">Nit</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Direccion</th>
-                        <th scope="col">Telefono</th>
-                        <th scope="col">Ciudad</th>
-                        <th scope="col">Ver</th>
-                        <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
-                        <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="proveedor: ${proveedores}">
-                        <td th:text="${proveedor.nit}"></td>
-                        <td th:text="${proveedor.nombre}"></td>
-                        <td th:text="${proveedor.direccion}"></td>
-                        <td th:text="${proveedor.telefono}"></td>
-                        <td th:text="${proveedor.ciudad}"></td>
-                        <td><a th:href="@{'/proveedor/detalle/' + ${proveedor.id}}"><button class="btn btn-outline-primary">
-                                    <i class="far fa-eye"></i>
-                                </button></a></td>
-                        <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/proveedor/editar/' + ${proveedor.id}}"><button class="btn btn-outline-warning"><i class="far fa-edit"></i></button></a></td>
-                        <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/proveedor/borrar/' + ${proveedor.id}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a></td>
-                    </tr>
+							<input type="number" class="form-control" id="busquedaId"
+								name="busquedaId" placeholder="Ingresa el ID">
+						</div>
+						<button type="submit" class="btn btn-primary mb-2">Buscar</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="margin-bottom: 100px;">
+			<table class="table text-white table-white text-center">
+				<thead>
+					<tr>
+						<th scope="col">Nit</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Direccion</th>
+						<th scope="col">Telefono</th>
+						<th scope="col">Ciudad</th>
+						<th scope="col">Ver</th>
+						<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+						<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="proveedor: ${proveedores}">
+						<td th:text="${proveedor.nit}"></td>
+						<td th:text="${proveedor.nombre}"></td>
+						<td th:text="${proveedor.direccion}"></td>
+						<td th:text="${proveedor.telefono}"></td>
+						<td th:text="${proveedor.ciudad}"></td>
+						<td><a th:href="@{'/proveedor/detalle/' + ${proveedor.id}}"><button
+									class="btn btn-outline-primary">
+									<i class="far fa-eye"></i>
+								</button></a></td>
+						<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+							th:href="@{'/proveedor/editar/' + ${proveedor.id}}"><button
+									class="btn btn-outline-warning">
+									<i class="far fa-edit"></i>
+								</button></a></td>
+						<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+							th:href="@{'/proveedor/borrar/' + ${proveedor.id}}"><button
+									class="btn btn-outline-danger">
+									<i class="far fa-trash-alt"></i>
+								</button></a></td>
+					</tr>
 
-                </tbody>
-            </table>
-        </div>
-    </div>
+				</tbody>
+			</table>
+		</div>
+	</div>
 
-    <div style="margin-bottom: 60px;"></div>
+	<div style="margin-bottom: 60px;"></div>
     <footer th:insert="fragments :: footer"></footer>
     <div th:insert="fragments :: scripts"></div>
 
