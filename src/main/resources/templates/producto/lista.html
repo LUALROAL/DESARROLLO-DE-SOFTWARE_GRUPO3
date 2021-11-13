@@ -11,17 +11,15 @@
     <br>
     <h1 class="text-center text-white bg-dark">PRODUCTOS</h1>
     <br>
-
-
     <div class="container text-white">
 
         <div class="row">
             <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/producto/nuevo}">
-                <button class="btn btn-outline-success btn-lg">
+                <button class="btn btn-info btn-lg">
                     <i class="fas fa-plus-circle"></i>Nuevo Producto</button></a>
 
             <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/producto/cargarlistaproductos}">
-                <button class="btn btn-outline-primary btn-lg">
+                <button class="btn btn-outline-info btn-lg">
                     <i class="fas fa-cloud-upload"></i>Cargar archivo CSV</button></a>
         </div>
         <div class="row">
@@ -50,7 +48,7 @@
                         <td th:text="${producto.precioVenta}"></td>
                         <td th:text="${producto.ivaCompra}"></td>
                         <td th:text="${producto.Cantidad}"></td>
-                        <td><a th:href="@{'/producto/detalle/' + ${producto.id}}"><button class="btn btn-outline-primary"><i class="far fa-eye"></i></button></a></td>
+                        <td><a th:href="@{'/producto/detalle/' + ${producto.id}}"><button class="btn btn-outline-success"><i class="far fa-eye"></i></button></a></td>
                         <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/producto/editar/' + ${producto.id}}"><button class="btn btn-outline-warning"><i class="far fa-edit"></i></button></a></td>
                         <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/producto/borrar/' + ${producto.id}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a></td>
                     </tr>

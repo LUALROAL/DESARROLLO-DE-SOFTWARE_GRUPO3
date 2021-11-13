@@ -6,14 +6,13 @@
 
 <body class="bg-dark">
     <header th:insert="fragments :: nav"></header>
-    <h1 class="text-center text-white bg-dark">PROVEEDOR</h1>
     <br><br>
-
 	<div class="container">
-		<div class="card">
-			<div class="card-header text-center bg-dark text-white">
-				Detalles del proveedor</div>
-			<div class="card-body">
+		<div class="card text-white bg-secondary border-info">
+			<div class="card-header text-center bg-secondary text-white border-info">
+				<h1 class="text-center text-white">DETALLES DEL PROVEEDOR </h1>
+				</div>
+			<div class="card-body text-white bg-secondary">
 				<h5 class="card-title"
 					th:text="'Nombre del proveedor: ' + ${proveedor.nombre}"></h5>
 				<b>Nit:</b>
@@ -28,7 +27,7 @@
 					<b>Descripcion: </b>Este proveedor pertenece a nuestra tienda
 					virtual.
 				</p>
-				<a th:href="@{/proveedor/lista}" class="btn btn-outline-danger">
+				<a th:href="@{/proveedor/lista}" class="btn btn-info">
 					<i class="fas fa-arrow-circle-left"></i> Volver
 				</a>
 			</div>

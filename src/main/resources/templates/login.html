@@ -10,17 +10,14 @@
 
 <body class="bg-dark">
     <header>
-        <br>
-        <img class="rounded mx-auto d-block" src="https://i.pinimg.com/originals/7c/89/90/7c89904c65970d2581ce4b5a392f7712.gif" alt="Card image cap" width="15%" height="15%" />
-        <br>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-info mb-3">
     </header>
-    <h1 class="text-center text-white bg-dark">INICIO DE SESION</h1>
     <br>
     <br>
     <div class="container d-flex justify-content-center">
-        <div class="card border border-primary  rounded">
-            <div class="card-header"></div>
-            <div class="card-body ">
+        <div class="card border border-info  rounded">
+            <div class="card-header text-center text-white bg-info" >INICIO DE SESION</div>
+            <div class="card-body">
                 <div th:if="${registroOK}" class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                     <p th:text="${registroOK}"></p>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -41,11 +38,11 @@
                         <input type="checkbox" class="form-check-input" id="checkRememberMe" name="checkRememberMe"> <label class="form-check-label" for="checkRememberMe">Recordarme</label>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block">
+                        <button type="submit" class="btn btn-info btn-block">
                             <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
                         </button>
                         <br> <a th:href="@{/}">
-                            <button type="button" th:href="@{/}" class="btn btn-danger btn-block">Volver al Inicio</button>
+                            <button type="button" th:href="@{/}" class="btn btn-light btn-block">Volver al Inicio</button>
                         </a>
                     </div>
                 </form>

@@ -16,12 +16,12 @@
 				<div>
 					<a sec:authorize="hasRole('ROLE_ADMIN')"
 						th:href="@{/venta/crear}">
-						<button class="btn btn-outline-success">
+						<button class="btn btn-info">
 							<i class="fas fa-plus-circle"></i> Nueva Venta
 						</button>
 					</a> <a th:href="@{/}">
 						<button type="button" th:href="@{/}"
-							class="btn btn-outline-danger">
+							class="btn btn-outline-info">
 							<i class="fas fa-reply-all"></i> Volver al menu
 						</button>
 					</a>
@@ -35,7 +35,7 @@
 							<input type="number" class="form-control" id="busquedaId"
 								name="busquedaId" placeholder="Ingresa el ID">
 						</div>
-						<button type="submit" class="btn btn-primary mb-2">Buscar</button>
+						<button type="submit" class="btn btn-info mb-2">Buscar</button>
 					</form>
 				</div>
 			</div>
@@ -65,7 +65,7 @@
                         <!-- <td th:text="${venta.usuario.nombreCompleto}"></td> -->
                         <td th:text="${venta.subTotal}"></td>
                         <td th:text="${venta.total}"></td>
-                        <td><a th:href="@{'/venta/detalle/' + ${venta.id}}"><button class="btn btn-outline-primary"><i class="far fa-eye"></i></button></a>
+                        <td><a th:href="@{'/venta/detalle/' + ${venta.id}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
                         </td>
                         <!-- <td sec:authorize="hasRole('ROLE_ADMIN')"><a
                                 th:href="@{'/venta/editar/' + ${venta.id}}"><button

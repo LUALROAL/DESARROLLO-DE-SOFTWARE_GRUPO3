@@ -6,7 +6,7 @@
 
 <body class="bg-dark">
     <header th:insert="fragments :: nav"></header>
-    <h1 class="text-center text-white bg-dark">EDITAR proveedor</h1>
+    <h1 class="text-center text-white bg-dark">EDITAR PROVEEDOR</h1>
     <br><br>
 
     <div class="container">
@@ -40,11 +40,11 @@
                         <input type="text" class="form-control" id="ciudad" name="ciudad" required="required" autocomplete="off" th:value="${proveedor.ciudad}">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-outline-primary btn-block">
+                        <button type="submit" class="btn btn-info btn-block">
                             <i class="fas fa-sync-alt"></i> Actualizar</button>
                     </div>
                 </form>
-                <a th:href="@{/proveedor/lista}" style="text-decoration: none;"><button class="btn btn-outline-danger">
+                <a th:href="@{/proveedor/lista}" style="text-decoration: none;"><button class="btn btn-outline-info">
                         <i class="fas fa-arrow-circle-left"></i> Volver</button></a>
 
                 <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
