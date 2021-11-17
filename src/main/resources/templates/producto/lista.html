@@ -1,70 +1,92 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:insert="fragments :: headerfiles">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 
 <body class="bg-dark">
-    <header th:insert="fragments :: nav"></header>
-    <img class="rounded mx-auto d-block" src="https://www.damos.co/mediateca/onlineshopping_damos.gif" alt="Card image cap" width="15%" height="15%" />
-    <br>
-    <h1 class="text-center text-white bg-dark">PRODUCTOS</h1>
-    <br>
-    <div class="container text-white">
+	<header th:insert="fragments :: nav"></header>
+	<img class="rounded mx-auto d-block"
+		src="https://www.damos.co/mediateca/onlineshopping_damos.gif"
+		alt="Card image cap" width="15%" height="15%" />
+	<br>
+	<h1 class="text-center text-white bg-dark">PRODUCTOS</h1>
+	<br>
+	<div class="container">
+		<div class="row justify-content-between">
+			<div>
+				<a sec:authorize="hasRole('ROLE_ADMIN')"
+					th:href="@{/producto/nuevo}">
+					<button class="btn btn-info">
+						<i class="fas fa-plus-circle"></i> Nuevo Producto
+					</button>
+				</a> <a sec:authorize="hasRole('ROLE_ADMIN')"
+					th:href="@{/producto/cargarlistaproductos}">
+					<button class="btn btn-outline-info">
+						<i class="fas fa-cloud-download-alt"></i> Cargar archivo CSV
+					</button>
+				</a> <a th:href="@{/}">
+					<button type="button" th:href="@{/}" class="btn btn-outline-info">
+						<i class="fas fa-reply-all"></i> Volver al menu
+					</button>
+				</a>
+			</div>
+		</div>
+		<div class="container text-white">
+			<div class="row">
+				<table class="table text-white table-white text-center">
+					<thead>
+						<tr>
+							<th scope="col">Nombre</th>
+							<th scope="col">Código</th>
+							<th scope="col">Nit proveedor</th>
+							<th scope="col">Precio compra</th>
+							<th scope="col">Precio de venta</th>
+							<th scope="col">Iva de compra</th>
+							<th scope="col">Cantidad</th>
+							<!-- <th scope="col">Detalle</th> -->
+							<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Detalles</th>
+							<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+							<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="producto: ${productos}">
+							<td th:text="${producto.nombre}"></td>
+							<td th:text="${producto.codigo}"></td>
+							<td th:text="${producto.nitProveedor}"></td>
+							<td th:text="${producto.precioCompra}"></td>
+							<td th:text="${producto.precioVenta}"></td>
+							<td th:text="${producto.ivaCompra}"></td>
+							<td th:text="${producto.Cantidad}"></td>
+							<td><a th:href="@{'/producto/detalle/' + ${producto.id}}"><button
+										class="btn btn-outline-success">
+										<i class="far fa-eye"></i>
+									</button></a></td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+								th:href="@{'/producto/editar/' + ${producto.id}}"><button
+										class="btn btn-outline-warning">
+										<i class="far fa-edit"></i>
+									</button></a></td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+								th:href="@{'/producto/borrar/' + ${producto.id}}"><button
+										class="btn btn-outline-danger">
+										<i class="far fa-trash-alt"></i>
+									</button></a></td>
+						</tr>
 
-        <div class="row">
-            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/producto/nuevo}">
-                <button class="btn btn-info btn-lg">
-                    <i class="fas fa-plus-circle"></i>Nuevo Producto</button></a>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
-            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/producto/cargarlistaproductos}">
-                <button class="btn btn-outline-info btn-lg">
-                    <i class="fas fa-cloud-upload"></i>Cargar archivo CSV</button></a>
-        </div>
-        <div class="row">
-            <table class="table text-white table-white text-center">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Código</th>
-                        <th scope="col">Nit proveedor</th>
-                        <th scope="col">Precio compra </th>
-                        <th scope="col">Precio de venta</th>
-                        <th scope="col">Iva de compra</th>
-                        <th scope="col">Cantidad</th>
-                        <!-- <th scope="col">Detalle</th> -->
-                        <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Detalles</th>
-                        <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
-                        <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="producto: ${productos}">
-                        <td th:text="${producto.nombre}"></td>
-                        <td th:text="${producto.codigo}"></td>
-                        <td th:text="${producto.nitProveedor}"></td>
-                        <td th:text="${producto.precioCompra}"></td>
-                        <td th:text="${producto.precioVenta}"></td>
-                        <td th:text="${producto.ivaCompra}"></td>
-                        <td th:text="${producto.Cantidad}"></td>
-                        <td><a th:href="@{'/producto/detalle/' + ${producto.id}}"><button class="btn btn-outline-success"><i class="far fa-eye"></i></button></a></td>
-                        <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/producto/editar/' + ${producto.id}}"><button class="btn btn-outline-warning"><i class="far fa-edit"></i></button></a></td>
-                        <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{'/producto/borrar/' + ${producto.id}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a></td>
-                    </tr>
+		<div style="margin-bottom: 60px;"></div>
+		<footer th:insert="fragments :: footer"></footer>
+		<div th:insert="fragments :: scripts"></div>
 
-                </tbody>
-            </table>
-        </div>
-
-
-
-    </div>
-
-    <div style="margin-bottom: 60px;"></div>
-    <footer th:insert="fragments :: footer"></footer>
-    <div th:insert="fragments :: scripts"></div>
+	</div>
 
 </body>
-
 </html>
